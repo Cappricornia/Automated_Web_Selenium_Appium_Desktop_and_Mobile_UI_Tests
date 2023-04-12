@@ -51,14 +51,11 @@ namespace SeleniumTests
             var createButton = driver.FindElement(By.XPath("//button[@type='submit']"));
             createButton.Click();
 
-            
-            // Assert that the new url is included in the table list
 
             Assert.That(driver.PageSource.Contains(newUrl));
 
             var lastRow = driver.FindElements(By.CssSelector("table > tbody > tr")).Last();
             
-            //var lastRowFirstCell = lastRow.FindElements(By.CssSelector("td"))[0];
             var lastRowFirstCell = lastRow.FindElements(By.CssSelector("td")).First();
 
             Assert.That(lastRowFirstCell.Text, Is.EqualTo(newUrl), "URL");
@@ -105,35 +102,30 @@ namespace SeleniumTests
         [Test]
         public void Test_Visit_Existing_Short_Url_Assert_Visitors_Counter_Increases()
         {
-            // navigate to the shorUrls
             var shortUrls = driver.FindElement(By.LinkText("Short URLs"));
             shortUrls.Click();
 
-            // get all rows of the table ShortUrl - then get first
             var firstRow = driver.FindElements(By.CssSelector("table > tbody > tr")).First();
 
-            // from first row of the cell get last cell - counter
+           
             var oldCount = int.Parse(firstRow.FindElements(By.CssSelector("td")).Last().Text);
 
-            // locate the cell where is the shortUrl to be clicked
+           
             var cellClickShortLink = firstRow.FindElements(By.CssSelector("td"))[1];
 
-            // locate link itself and click on the link 
+            
             var clickShortLink = cellClickShortLink.FindElement(By.TagName("a"));
             clickShortLink.Click();
 
-            // a new window will be open so switch back to the first one 
+           
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
-            // refresh page
             driver.Navigate().Refresh();
 
-            // find again the first row
             firstRow = driver.FindElements(By.CssSelector("table > tbody > tr")).First();
-            // get the uodated counter now
+           
             var newCount = int.Parse(firstRow.FindElements(By.CssSelector("td")).Last().Text);
             
-            // compare two counters 
             Assert.That(newCount, Is.EqualTo(oldCount + 1));
         }
 

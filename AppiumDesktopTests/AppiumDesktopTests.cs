@@ -10,8 +10,7 @@ namespace AppiumDesktopTests
 
         private const string appLocation = @"C:\AppsDemo\shortUrl\ShortURL-DesktopClient.exe";
         private const string appiumServer = "http://127.0.0.1:4723/wd/hub";
-        // Web browser and the Desktop CLient App use the same server, that's why we use our url cause this is the same server for the Desktop exe
-        //•	Connect to your backend API service
+       
         private const string appServer = "https://shorturl.Cappricornia.repl.co/api";
 
         [SetUp]
