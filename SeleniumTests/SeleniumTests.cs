@@ -37,7 +37,7 @@ namespace SeleniumTests
         }
 
         [Test]
-        public void Test_AddUrl_Add_Valid_Url_Assert_New_Email_In_The_List()
+        public void Test_AddUrl_Add_Valid_Url_Assert_New_Url_In_The_List()
         {
 
             var newUrl = "http://newurl" + DateTime.Now.Ticks + ".com";
