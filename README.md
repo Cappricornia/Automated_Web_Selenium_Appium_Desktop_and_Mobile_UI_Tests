@@ -15,4 +15,4 @@
 ![Selenium-3-webdriver](https://user-images.githubusercontent.com/90700181/231591404-0b36bbd6-eea0-4fa9-bc44-75a152b2f2a2.jpg)
 -----------------------------------------------------
 
-![preptests](https://user-images.githubusercontent.com/90700181/231591930-92d909a7-da16-4445-9281-b869ebced652.png)
+![tests](https://user-images.githubusercontent.com/90700181/233450799-37fbc883-1a5c-4d96-b9c0-ac8d8cfbe788.png)
