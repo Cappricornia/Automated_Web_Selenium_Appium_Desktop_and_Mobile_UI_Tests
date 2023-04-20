@@ -55,7 +55,37 @@ namespace AppiumDesktopTests
             
             Assert.IsNotEmpty(addedUrl.Text);
             Assert.That(addedUrl.Text, Is.EqualTo(newUrl)); 
+        }
+        
+        [Test]
+        public void Test_Add_Invalid_Data_Assert_Err_Msg()
+        {
+            var apiUrl = driver.FindElementByAccessibilityId("textBoxApiUrl");
+            apiUrl.Clear();
 
+            apiUrl.SendKeys(appServer);
+
+            var connectButton = driver.FindElementByAccessibilityId("buttonConnect");
+            connectButton.Click();
+
+            var addButton = driver.FindElementByAccessibilityId("buttonAdd");
+            addButton.Click();
+
+            var invalidData = "invalid data";
+
+            var urlField = driver.FindElementByAccessibilityId("textBoxURL");
+            urlField.SendKeys(invalidData);
+
+            var createButton = driver.FindElementByAccessibilityId("buttonCreate");
+            createButton.Click();
+
+            HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(appServer);
+
+            HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+            if (myHttpWebResponse.StatusCode == HttpStatusCode.BadRequest)
+                Assert.That("Invalid URL!", Is.EqualTo(myHttpWebResponse.StatusDescription));
+                                    
+            myHttpWebResponse.Close();
         }
 
     }
