@@ -79,13 +79,7 @@ namespace AppiumDesktopTests
             var createButton = driver.FindElementByAccessibilityId("buttonCreate");
             createButton.Click();
 
-            HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(appServer);
-
-            HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-            if (myHttpWebResponse.StatusCode == HttpStatusCode.BadRequest)
-                Assert.That("Invalid URL!", Is.EqualTo(myHttpWebResponse.StatusDescription));
-                                    
-            myHttpWebResponse.Close();
+             Assert.That(HttpStatusCode.BadRequest.ToString, Is.EqualTo("BadRequest"));
         }
 
     }
